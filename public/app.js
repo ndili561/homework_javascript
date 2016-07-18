@@ -10,12 +10,12 @@ function main(){
     event.preventDefault();
   }
 
-
-
   
-  var btn2 = document.getElementById('quote-form')
-  btn2.onclick = handleDelete();
+  var btn2 = document.getElementsByTagName('blockquote')
+  btn2.onclick = handleDelete;
+  var form = document.getElementById('quote-list')
   form.onsubmit = function(event){
+    console.log('1')
     event.preventDefault()
   }
  
@@ -28,11 +28,10 @@ function getquotes(){
   return element;
 }
 
-function allquotes(quote){
+function allquotes(){
   var arr = [];
-  arr.push(getquotes())
-  arr.push(quote);
-  console.log(arr);
+  var a = document.getElementsByTagName('blockquote')
+  arr.push(a)
 }
 
 function handleclick(){
@@ -47,15 +46,25 @@ function handleclick(){
 
 function appendquote(quoteInput,authorInput){
   var li  = document.createElement('li');
-  quoteInput.className = 'blockquote';
-  authorInput.className = 'author';
-  li.innerText = quoteInput + '. ' + authorInput;
+  var blockquote = document.createElement('blockquote');
+  var cite = document.createElement('cite')
+  blockquote.innerText = quoteInput + '. '
+  cite.innerText=authorInput;
   var ul = document.getElementById('quote-list');
-  var quote = ul.appendChild(li);
-  allquotes(quote);
+  ul.appendChild(li);
+  li.appendChild(blockquote);
+  blockquote.appendChild(cite);
+  allquotes();
 }
 
 function handleDelete(){
-  console.log('fjnan');
+  console.log('1')
+  var parent = document.getElementById('blockquote')
+  var child = document.getElementById('cite')
+  parent.removeChild(child)
 }
+
+
+
+
 
